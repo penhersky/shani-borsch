@@ -1,0 +1,55 @@
+{
+  "name": "shani-borsch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "deploy:prod": "serverless deploy --stage production",
+    "deploy:dev": "serverless deploy --stage development",
+    "dev": "serverless offline --noTimeout --dontPrintOutput --stage development",
+    "test:unit": "jest",
+    "pretest": "eslint --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "aws-sdk": "2.784.0",
+    "source-map-support": "0.5.10"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.17",
+    "@types/jest": "26.0.15",
+    "@types/node": "10.12.18",
+    "@types/serverless": "1.72.5",
+    "@typescript-eslint/eslint-plugin": "4.6.1",
+    "eslint": "7.12.1",
+    "eslint-config-airbnb-typescript": "12.0.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-prettier": "3.1.4",
+    "fork-ts-checker-webpack-plugin": "3.0.1",
+    "jest": "26.6.2",
+    "serverless": "2.9.0",
+    "serverless-dotenv-plugin": "3.1.0",
+    "serverless-offline": "6.8.0",
+    "serverless-plugin-typescript": "1.1.9",
+    "serverless-webpack": "5.2.0",
+    "ts-jest": "26.4.3",
+    "ts-loader": "5.3.3",
+    "ts-node": "8.10.2",
+    "typescript": "3.2.4",
+    "webpack": "4.29.0",
+    "webpack-node-externals": "1.7.2"
+  },
+  "author": "penhersky",
+  "license": "MIT",
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  }
+}
