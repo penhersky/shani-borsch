@@ -12,6 +12,11 @@ custom:
       - DB_NAME
       - DB_HOST
       - DB_PASS
+
+      - EMAIL_SERVICE
+      - EMAIL_USER
+      - EMAIL_PASS
+
       - AWS_REGION_STR
       - AUTH0_CLIENT_ID_STR
       - AUTH0_CLIENT_SECRET_STR
@@ -43,7 +48,7 @@ provider:
   runtime: nodejs12.x
   stage: ${self:custom.stage}
   region: ${env:AWS_REGION_STR}
-  memorySize: 128
+  memorySize: 256
   timeout: 6
   apiGateway:
     minimumCompressionSize: 1024
@@ -52,17 +57,13 @@ provider:
 
 functions:
   getProducts:
-    handler: src/endpoints/handler.handler
+    handler: src/endpoints/sendEmail.handler
     events:
       - http:
-          path: /
-          method: GET
+          path: /email
+          method: POST
           cors:
             origin: '*'
             headers:
               - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
+              - Access-service-key
