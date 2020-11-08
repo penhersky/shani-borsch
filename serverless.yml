@@ -17,10 +17,10 @@ custom:
       - EMAIL_USER
       - EMAIL_PASS
 
-      - AWS_REGION_STR
-      - AUTH0_CLIENT_ID_STR
-      - AUTH0_CLIENT_SECRET_STR
-      - AWS_BUCKET_NAME
+      - CLOUD_REGION
+      - CLOUD_AUTH_CLIENT_ID
+      - CLOUD_AUTH_CLIENT_SECRET
+      - CLOUD_BUCKET_NAME
       - TOKEN_SECRET
   webpack:
     webpackConfig: ./webpack.config.js
@@ -41,13 +41,13 @@ resources:
     DemoBucketUpload:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: ${env:AWS_BUCKET_NAME}
+        BucketName: ${env:CLOUD_BUCKET_NAME}
 
 provider:
   name: aws
   runtime: nodejs12.x
   stage: ${self:custom.stage}
-  region: ${env:AWS_REGION_STR}
+  region: ${env:CLOUD_REGION}
   memorySize: 256
   timeout: 6
   apiGateway:

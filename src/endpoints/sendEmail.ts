@@ -18,7 +18,7 @@ const lambda = async (event: APIGatewayEvent): Promise<any> => {
 
   try {
     const data = JSON.parse(event.body);
-    console.log(data);
+
     const validationError = await emailValidation(data);
     if (typeof validationError === 'string')
       return res.C400({ result: 'error', message: validationError });
