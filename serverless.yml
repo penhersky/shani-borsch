@@ -39,10 +39,10 @@ package:
 
 resources:
   Resources:
-    DemoBucketUpload:
+    BucketUpload:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: ${env:CLOUD_BUCKET_NAME}
+        BucketName: ${env:CLOUD_BUCKET_NAME}-${env:NODE_ENV}
 
 provider:
   name: aws
@@ -62,6 +62,17 @@ functions:
     events:
       - http:
           path: /email
+          method: POST
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Access-service-key
+  uploadFile:
+    handler: src/endpoints/uploadFile.handler
+    events:
+      - http:
+          path: /upload
           method: POST
           cors:
             origin: '*'
