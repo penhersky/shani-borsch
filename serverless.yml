@@ -20,6 +20,7 @@ custom:
       - CLOUD_REGION
       - CLOUD_AUTH_CLIENT_ID
       - CLOUD_AUTH_CLIENT_SECRET
+      - CLOUD_LOGROUP_NAME
       - CLOUD_BUCKET_NAME
       - TOKEN_SECRET
   webpack:

@@ -4,6 +4,7 @@ import 'source-map-support/register';
 
 import res from '../common/responses';
 import { emailValidation } from '../common/validation';
+import logger from '../common/logger';
 
 const { EMAIL_SERVICE, EMAIL_USER, EMAIL_PASS } = process.env;
 
@@ -31,7 +32,7 @@ const lambda = async (event: APIGatewayEvent): Promise<any> => {
     });
     return res.C200({ result: 'success' });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.C500({ result: 'error', message: 'send email response error' });
   }
 };
