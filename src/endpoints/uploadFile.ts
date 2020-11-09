@@ -7,11 +7,16 @@ import logger from '../common/logger';
 
 const lambda = async (event: APIGatewayEvent): Promise<any> => {
   try {
-    const decodedImage = Buffer.from(event.body, 'base64');
+    const body = JSON.parse(event.body);
+
+    if (!body || !body?.image || !body?.contentType)
+      return res.C404({ result: 'error', message: 'bad data' });
+
+    const decodedImage = Buffer.from(body?.image, 'base64');
 
     const result = await uploadFile(
       decodedImage,
-      event.headers['Content-Type'].split('/')[1],
+      body.type.split('/')[1],
       generatePath,
     );
 
